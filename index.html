@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <form action="/" method="POST">
+    <div class="form-group">
+        <label for="query1" class="col-sm-2 col-form-label">Ask Query:</label>
+        <div class="col-sm-4">
+            <input placeholder="Query" type="text" class="form-control" name="query" id="query-input" required>
+        </div>
+    </div>
+    <div style="padding-left: 15px;">
+        <input type="submit" class="btn btn-primary" value="Send Query">
+    </div>
+</form>
+{% if show_tag %}
+<div style="margin-top: 10px; margin-left: 15px;">
+    {% if tags|length > 0 %}
+    {% for tag in tags %}
+    <span class="badge badge-pill badge-primary">{{ tag }}</span>
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-danger" style="width: 40%;" role="alert">
+        <span>There are no tags until now for such query!!!</span>
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+</body>
+
+</html>
